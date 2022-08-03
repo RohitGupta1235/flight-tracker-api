@@ -31,7 +31,7 @@ def load_info():
     raw_data = open('G8320.json')
     json_data = json.load(raw_data)
     live_location(json_data[0]['flight']['icao'])
-    return json_data[10]
+    return json_data
 
 
 origins = ["*"]
