@@ -3,9 +3,12 @@ from fastapi import FastAPI
 import json
 from bs4 import BeautifulSoup
 from fastapi.middleware.cors import CORSMiddleware
+import pymysql
 
 app = FastAPI()
-soip = BeautifulSoup()
+soup = BeautifulSoup()
+
+db = pymysql.connect(host="sql6.freemysqlhosting.net",user="sql6510524",passwd="nclN7eLPbL",database="sql6510524")
 
 @app.get('/data/{flight_iata}')
 def get_info(flight_iata:str):
@@ -33,6 +36,12 @@ def load_info():
     live_location(json_data[0]['flight']['icao'])
     return json_data
 
+@app.post('/user/{email}/{password}')
+def create_user(email:str,password:str):
+    cursor = db.cursor()
+    sql = f"""INSERT INTO `users` (`user_id`, `email`, `password`) VALUES ('', '{email}', '{password}')"""  
+    cursor.execute(sql)
+    db.commit()  
 
 origins = ["*"]
 
@@ -43,4 +52,3 @@ app = CORSMiddleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-    
