@@ -22,7 +22,8 @@ def get_img(flight_iata:str):
     api_result = requests.get('https://app.goflightlabs.com/flights', params)
 
     api_response = api_result.json()
-    if(api_response[0]):
+    # print(len(api_response))
+    if(len(api_response)>3):
         api_response = get_info(api_response)
     return api_response
 
