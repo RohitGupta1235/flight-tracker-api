@@ -10,7 +10,7 @@ from helper import get_info,get_map
 app = FastAPI()
 soup = BeautifulSoup()
 
-db = pymysql.connect(host="sql6.freemysqlhosting.net",user="sql6510524",passwd="nclN7eLPbL",database="sql6510524")
+db = pymysql.connect(host="remotemysql.com",user="lqK0dgIk3h",passwd="v1SWInkN3z",database="lqK0dgIk3h")
 
 @app.get('/data/{flight_iata}')
 def get_img(flight_iata:str):
