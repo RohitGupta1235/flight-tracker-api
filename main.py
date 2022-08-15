@@ -3,15 +3,13 @@ from fastapi import FastAPI
 import json
 from bs4 import BeautifulSoup
 from fastapi.middleware.cors import CORSMiddleware
-import pymysql
 from model import User,Data
-from helper import get_info,get_map
+from helper import get_info,get_map,get_db
 
-app = FastAPI()
+app = FastAPI(title="Flight Tracker Api",description="It is an api which collects information of a flight with their icao code in realtime")
 soup = BeautifulSoup()
 
-def get_db():
-    return pymysql.connect(host="remotemysql.com",user="lqK0dgIk3h",passwd="v1SWInkN3z",database="lqK0dgIk3h")
+
 
 @app.get('/data/{flight_iata}')
 def get_img(flight_iata:str):
@@ -51,7 +49,8 @@ def maps(departure:str,arrival:str):
     return html
 
 @app.post('/user')
-def create_user(db:get_db(),user:User):
+def create_user(user:User):
+    db = get_db()
     cursor = db.cursor()
     sql = f"""INSERT INTO `User` (`id`, `email`, `password`) VALUES (NULL, '{user.email}', '{user.password}')"""  
     cursor.execute(sql)
@@ -61,7 +60,8 @@ def create_user(db:get_db(),user:User):
     return {'id':id}
 
 @app.post('/data')
-def insert_data(db:get_db(),data:Data):
+def insert_data(data:Data):
+    db = get_db()
     departure_id:int = None
     arrival_id:int = None
     cursor = db.cursor()

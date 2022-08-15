@@ -5,6 +5,14 @@ import folium
 from geopy.geocoders import ArcGIS
 from fastapi.responses import HTMLResponse
 import codecs
+import pymysql
+
+async def get_db():
+    db = pymysql.connect(host="remotemysql.com",user="lqK0dgIk3h",passwd="v1SWInkN3z",database="lqK0dgIk3h")
+    try:
+        yield db
+    finally:
+        db.close()
   
 def get_info(data:list)->list:
     iata =  data[0]["flight"]["iata"] 
