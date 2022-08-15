@@ -19,7 +19,7 @@ def get_info(data:list)->list:
     soup = BeautifulSoup(webpage.content, "html.parser")
     dom = etree.HTML(str(soup))
     tail_number = dom.xpath('//div[@id="value"]/a/text()')
-    if(len(tail_number)!=0):
+    if(len(tail_number)>=3):
         tail_number= tail_number[3]
         # print(tail_number)
     else:
