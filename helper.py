@@ -6,13 +6,13 @@ from geopy.geocoders import ArcGIS
 from fastapi.responses import HTMLResponse
 import codecs
 import pymysql
+from fastapi.templating import Jinja2Templates
 
-async def get_db():
-    db = pymysql.connect(host="remotemysql.com",user="lqK0dgIk3h",passwd="v1SWInkN3z",database="lqK0dgIk3h")
-    try:
-        yield db
-    finally:
-        db.close()
+templates = Jinja2Templates(directory='.')
+
+def get_db():
+    db = pymysql.connect(host="localhost",user="root",passwd="",database="flight-database")
+    return db
   
 def get_info(data:list)->list:
     iata =  data[0]["flight"]["iata"] 
@@ -58,12 +58,10 @@ def get_map(departure:str,arrival:str):
     lat2 , lon2 = nom.geocode(arrival)[1]  
     m = folium.Map(location=[lat1, lon1],zoom_start=6)
     folium.Marker(
-    [lat1, lon1], popup=f"""<b>{departure}</b>""",icon=folium.DivIcon(html="""<div><img style="filter: brightness(0) invert(0.3);" src='plane-departure-solid.svg' title='plane-departure' height='32px' width='32px' /></div>""")).add_to(m)
+    [lat1, lon1], popup=f"""<b>{departure}</b>""",icon=folium.DivIcon(html="""<div><img style="filter: brightness(0) invert(0.3);" src='https://gistcdn.githack.com/samrath-sudesh-acharya/6a88e910264def1727ff858157b635c4/raw/b2fa31b378af6593f037bd7869d1df7890cc4544/plane-departure.svg' title='plane-departure' height='32px' width='32px' /></div>""")).add_to(m)
     folium.Marker(
-    [lat2, lon2], popup=f"""<b>{arrival}</b>""",icon=folium.DivIcon(html="""<div><img style="filter: brightness(0) invert(0.3);" src='plane-arrival-solid.svg' title='plane-arrival' height='32px' width='32px' /></div>""")).add_to(m)
+    [lat2, lon2], popup=f"""<b>{arrival}</b>""",icon=folium.DivIcon(html="""<div><img style="filter: brightness(0) invert(0.3);" src='https://gistcdn.githack.com/samrath-sudesh-acharya/d36aedb15a5f492a9a1c4f2701a76421/raw/48a72d62f49b63375944d88d0254a834ac75cf06/plane-arrival.svg' title='plane-arrival' height='32px' width='32px' /></div>""")).add_to(m)
     folium.PolyLine([(lat1,lon1),(lat2,lon2)],color='darkgrey',dash_array='10').add_to(m)
-    m.save('map.html')
-    with codecs.open("map.html", "r") as f :
-        index = f.read()
-    return HTMLResponse(content=index, status_code=200)
+    m.save('html/map.html')
+
 

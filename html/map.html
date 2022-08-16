@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_68e30f8a4a03c59746ca4c34c7c8e781 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_68e30f8a4a03c59746ca4c34c7c8e781" ></div>
+        
+</body>
+<script>    
+    
+            var map_68e30f8a4a03c59746ca4c34c7c8e781 = L.map(
+                "map_68e30f8a4a03c59746ca4c34c7c8e781",
+                {
+                    center: [13.199620000000039, 77.70823000000007],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_93c948844f93f9b8718c561dfd8261b8 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_68e30f8a4a03c59746ca4c34c7c8e781);
+        
+    
+            var marker_a9905ed24fc5fce79a1003d5c5a25f93 = L.marker(
+                [13.199620000000039, 77.70823000000007],
+                {}
+            ).addTo(map_68e30f8a4a03c59746ca4c34c7c8e781);
+        
+    
+            var div_icon_ff8a539f7f0f4898ec017e6b1b33b170 = L.divIcon({"className": "empty", "html": "\u003cdiv\u003e\u003cimg style=\"filter: brightness(0) invert(0.3);\" src=\u0027https://gistcdn.githack.com/samrath-sudesh-acharya/6a88e910264def1727ff858157b635c4/raw/b2fa31b378af6593f037bd7869d1df7890cc4544/plane-departure.svg\u0027 title=\u0027plane-departure\u0027 height=\u002732px\u0027 width=\u002732px\u0027 /\u003e\u003c/div\u003e"});
+            marker_a9905ed24fc5fce79a1003d5c5a25f93.setIcon(div_icon_ff8a539f7f0f4898ec017e6b1b33b170);
+        
+    
+        var popup_30738b773dcbb7b8f609839a680997a5 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3de814d004c31ceaa4c83fb812cbcfac = $(`<div id="html_3de814d004c31ceaa4c83fb812cbcfac" style="width: 100.0%; height: 100.0%;"><b>Bangalore International Airport</b></div>`)[0];
+            popup_30738b773dcbb7b8f609839a680997a5.setContent(html_3de814d004c31ceaa4c83fb812cbcfac);
+        
+
+        marker_a9905ed24fc5fce79a1003d5c5a25f93.bindPopup(popup_30738b773dcbb7b8f609839a680997a5)
+        ;
+
+        
+    
+    
+            var marker_f39076cc1795f6d24d3a81858267a0a0 = L.marker(
+                [19.099450000000047, 72.87430000000006],
+                {}
+            ).addTo(map_68e30f8a4a03c59746ca4c34c7c8e781);
+        
+    
+            var div_icon_8b8a123f9e501874dc8ec8af10901cd1 = L.divIcon({"className": "empty", "html": "\u003cdiv\u003e\u003cimg style=\"filter: brightness(0) invert(0.3);\" src=\u0027https://gistcdn.githack.com/samrath-sudesh-acharya/d36aedb15a5f492a9a1c4f2701a76421/raw/48a72d62f49b63375944d88d0254a834ac75cf06/plane-arrival.svg\u0027 title=\u0027plane-arrival\u0027 height=\u002732px\u0027 width=\u002732px\u0027 /\u003e\u003c/div\u003e"});
+            marker_f39076cc1795f6d24d3a81858267a0a0.setIcon(div_icon_8b8a123f9e501874dc8ec8af10901cd1);
+        
+    
+        var popup_6a8a5cc1685f1e51e531cc7aa816cdfc = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b28f1b848ba148655db33b09d1d2d1c7 = $(`<div id="html_b28f1b848ba148655db33b09d1d2d1c7" style="width: 100.0%; height: 100.0%;"><b>Chhatrapati Shivaji International (Sahar International)</b></div>`)[0];
+            popup_6a8a5cc1685f1e51e531cc7aa816cdfc.setContent(html_b28f1b848ba148655db33b09d1d2d1c7);
+        
+
+        marker_f39076cc1795f6d24d3a81858267a0a0.bindPopup(popup_6a8a5cc1685f1e51e531cc7aa816cdfc)
+        ;
+
+        
+    
+    
+            var poly_line_4a7d4b621a1a0dc13c8aca1cca95d3e0 = L.polyline(
+                [[13.199620000000039, 77.70823000000007], [19.099450000000047, 72.87430000000006]],
+                {"bubblingMouseEvents": true, "color": "darkgrey", "dashArray": "10", "dashOffset": null, "fill": false, "fillColor": "darkgrey", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_68e30f8a4a03c59746ca4c34c7c8e781);
+        
+</script>

@@ -1,4 +1,4 @@
-from webbrowser import BaseBrowser
+from pydantic.schema import Optional
 from pydantic import BaseModel
 
 class User(BaseModel):
@@ -12,8 +12,8 @@ class Arrival(BaseModel):
     arrival_icao: str
     arrival_terminal: str
     arrival_gate: str
-    arrival_baggage: int
-    arrival_delay: int
+    arrival_baggage: Optional[int]
+    arrival_delay: Optional[int]
     arrival_scheduled: str
     arrival_estimated: str
     arrival_actual: str
@@ -27,8 +27,8 @@ class Departure(BaseModel):
     departure_icao: str
     departure_terminal: str
     departure_gate: str
-    departure_baggage: int
-    departure_delay: int
+    departure_baggage: Optional[int]
+    departure_delay: Optional[int]
     departure_scheduled: str
     departure_estimated: str
     departure_actual: str
