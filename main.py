@@ -1,4 +1,3 @@
-from re import template
 import requests
 from fastapi import FastAPI,Request
 import json

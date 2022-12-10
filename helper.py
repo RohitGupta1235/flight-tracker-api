@@ -3,16 +3,13 @@ from lxml import etree
 import requests
 import folium
 from geopy.geocoders import ArcGIS
-from fastapi.responses import HTMLResponse
-import codecs
-import pymysql
 from fastapi.templating import Jinja2Templates
 
 templates = Jinja2Templates(directory='.')
 
-def get_db():
-    db = pymysql.connect(host="localhost",user="root",passwd="",database="flight-database")
-    return db
+# def get_db():
+#     db = pymysql.connect(host="localhost",user="root",passwd="",database="flight-database")
+#     return db
   
 def get_info(data:list)->list:
     iata =  data[0]["flight"]["iata"] 
