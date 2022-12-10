@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from model import User,Data
-from helper import get_info,get_map,get_db
+# from model import User,Data
+from app.helper import get_info,get_map
 
 
 app = FastAPI(title="Flight Tracker Api",description="It is an api which collects information of a flight with their icao code in realtime")
