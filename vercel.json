@@ -1,0 +1,9 @@
+{
+	"version": 1,
+	"public": true,
+	"builds": [{ "src": "main.py", "use": "@vercel/python" }],
+	"routes": [
+		{ "src": "/data/", "dest": "main.py" },
+        { "src": "/map/", "dest": "main.py" }
+	]
+}
