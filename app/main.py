@@ -18,7 +18,7 @@ soup = BeautifulSoup()
 def get_img(flight_iata:str):
     params = {
                   'access_key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmIyMDIyNjJkZjI0ZGNkNzRkNmVlZjExZmMzYjczM2VkNmMzYWE5NDIyY2ZmOTE2YWIyZWU4OGNlMTAyNzE0NjcxMDA5ODU4NTAzZTViY2EiLCJpYXQiOjE2ODg5MTI4NzMsIm5iZiI6MTY4ODkxMjg3MywiZXhwIjoxNzIwNTM1MjczLCJzdWIiOiIyMTM0NCIsInNjb3BlcyI6W119.L_ud-0RQkmE0tXr5JBrPU5RxYwhHf054lm8EKGwVDBMcC9e12Xs0F8O1w5ohejxNPpTK9CZ5poOJbER0w-U0TQ',
-                  'flightIata': f'{flight_iata}'
+                  'origin': f'{flight_iata}'
     }
 
     api_result = requests.get('https://app.goflightlabs.com/flights', params)
