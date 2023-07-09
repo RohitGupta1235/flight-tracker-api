@@ -17,7 +17,7 @@ soup = BeautifulSoup()
 @app.get('/data/{flight_iata}')
 def get_img(flight_iata:str):
     params = {
-                  'access_key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZDM0NjM3M2QyZDYzNDczNWU3MDk1MTJkYTBjNjg2MDU1YTMwYzVkNmY0NTQzMGMyMWExZjZlYWI4OGI1ODg0OTRiNzQ3YTkyZjViYmQ3YTAiLCJpYXQiOjE2NTcxMTI4NjEsIm5iZiI6MTY1NzExMjg2MSwiZXhwIjoxNjg4NjQ4ODYxLCJzdWIiOiI3OTY0Iiwic2NvcGVzIjpbXX0.n5MglGPm75IDzE447m6wCHnN-Od7fCbQE4e3ffY3NKXVCKEbz9hf6NIGaUjXng49Vu77w6vqdWjnvojSx7Ydlg',
+                  'access_key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmIyMDIyNjJkZjI0ZGNkNzRkNmVlZjExZmMzYjczM2VkNmMzYWE5NDIyY2ZmOTE2YWIyZWU4OGNlMTAyNzE0NjcxMDA5ODU4NTAzZTViY2EiLCJpYXQiOjE2ODg5MTI4NzMsIm5iZiI6MTY4ODkxMjg3MywiZXhwIjoxNzIwNTM1MjczLCJzdWIiOiIyMTM0NCIsInNjb3BlcyI6W119.L_ud-0RQkmE0tXr5JBrPU5RxYwhHf054lm8EKGwVDBMcC9e12Xs0F8O1w5ohejxNPpTK9CZ5poOJbER0w-U0TQ',
                   'flightIata': f'{flight_iata}'
     }
 
