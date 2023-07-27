@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<head>    
+<html>
+<head>
+    
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
         <script>
@@ -9,41 +11,44 @@
     
     <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
     <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
     
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_0df0ff02b8d051a08aa198c1020c2b90 {
+                #map_2666950c839327586c8e210e93e0472f {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
                     left: 0.0%;
                     top: 0.0%;
                 }
+                .leaflet-container { font-size: 1rem; }
             </style>
         
 </head>
-<body>    
+<body>
     
-            <div class="folium-map" id="map_0df0ff02b8d051a08aa198c1020c2b90" ></div>
+    
+            <div class="folium-map" id="map_2666950c839327586c8e210e93e0472f" ></div>
         
 </body>
-<script>    
+<script>
     
-            var map_0df0ff02b8d051a08aa198c1020c2b90 = L.map(
-                "map_0df0ff02b8d051a08aa198c1020c2b90",
+    
+            var map_2666950c839327586c8e210e93e0472f = L.map(
+                "map_2666950c839327586c8e210e93e0472f",
                 {
-                    center: [50.61677000000003, -57.214909999999975],
+                    center: [32.88985, -97.03983],
                     crs: L.CRS.EPSG3857,
                     zoom: 6,
                     zoomControl: true,
@@ -55,61 +60,66 @@
 
         
     
-            var tile_layer_75722e0b597ec1f1bafc44d601db8c5d = L.tileLayer(
+            var tile_layer_30c573bb8025486b3dcc8e4dd40ee467 = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_0df0ff02b8d051a08aa198c1020c2b90);
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_2666950c839327586c8e210e93e0472f);
         
     
-            var marker_505698bf4ce95876f548104193c7adb9 = L.marker(
-                [50.61677000000003, -57.214909999999975],
+            var marker_81b17b312eea7180ebb05658907f7e47 = L.marker(
+                [32.88985, -97.03983],
                 {}
-            ).addTo(map_0df0ff02b8d051a08aa198c1020c2b90);
+            ).addTo(map_2666950c839327586c8e210e93e0472f);
         
     
-            var div_icon_d1d8fafa15683b99141fb3ffc764284f = L.divIcon({"className": "empty", "html": "\u003cdiv\u003e\u003cimg style=\"filter: brightness(0) invert(0.3);\" src=\u0027https://gistcdn.githack.com/samrath-sudesh-acharya/6a88e910264def1727ff858157b635c4/raw/b2fa31b378af6593f037bd7869d1df7890cc4544/plane-departure.svg\u0027 title=\u0027plane-departure\u0027 height=\u002732px\u0027 width=\u002732px\u0027 /\u003e\u003c/div\u003e"});
-            marker_505698bf4ce95876f548104193c7adb9.setIcon(div_icon_d1d8fafa15683b99141fb3ffc764284f);
+            var div_icon_6975f28456429c6bd63ca7c270a6cc8d = L.divIcon({"className": "empty", "html": "\u003cdiv\u003e\u003cimg style=\"filter: brightness(0) invert(0.3);\" src=\u0027https://gistcdn.githack.com/samrath-sudesh-acharya/6a88e910264def1727ff858157b635c4/raw/b2fa31b378af6593f037bd7869d1df7890cc4544/plane-departure.svg\u0027 title=\u0027plane-departure\u0027 height=\u002732px\u0027 width=\u002732px\u0027 /\u003e\u003c/div\u003e"});
+            marker_81b17b312eea7180ebb05658907f7e47.setIcon(div_icon_6975f28456429c6bd63ca7c270a6cc8d);
         
     
-        var popup_becd93d0d704c9d728594e66a5bbac0e = L.popup({"maxWidth": "100%"});
+        var popup_3513d2723451f85c23d79d411a4da423 = L.popup({"maxWidth": "100%"});
 
         
-            var html_8bb678f56a163cffad7495898c8c0e74 = $(`<div id="html_8bb678f56a163cffad7495898c8c0e74" style="width: 100.0%; height: 100.0%;"><b>Hawkes Bay</b></div>`)[0];
-            popup_becd93d0d704c9d728594e66a5bbac0e.setContent(html_8bb678f56a163cffad7495898c8c0e74);
+            
+                var html_d992715cdba23e976265144fe3baf916 = $(`<div id="html_d992715cdba23e976265144fe3baf916" style="width: 100.0%; height: 100.0%;"><b>DFW</b></div>`)[0];
+                popup_3513d2723451f85c23d79d411a4da423.setContent(html_d992715cdba23e976265144fe3baf916);
+            
         
 
-        marker_505698bf4ce95876f548104193c7adb9.bindPopup(popup_becd93d0d704c9d728594e66a5bbac0e)
+        marker_81b17b312eea7180ebb05658907f7e47.bindPopup(popup_3513d2723451f85c23d79d411a4da423)
         ;
 
         
     
     
-            var marker_4da76bd51eb1567751bfe004b2cc733e = L.marker(
-                [-41.32881999999995, 174.8123200000001],
+            var marker_e5a90dea2646e888120b428cd71d8490 = L.marker(
+                [37.4492, 126.45095],
                 {}
-            ).addTo(map_0df0ff02b8d051a08aa198c1020c2b90);
+            ).addTo(map_2666950c839327586c8e210e93e0472f);
         
     
-            var div_icon_ecb75844c8fb5b3459654bf21cc4f45d = L.divIcon({"className": "empty", "html": "\u003cdiv\u003e\u003cimg style=\"filter: brightness(0) invert(0.3);\" src=\u0027https://gistcdn.githack.com/samrath-sudesh-acharya/d36aedb15a5f492a9a1c4f2701a76421/raw/48a72d62f49b63375944d88d0254a834ac75cf06/plane-arrival.svg\u0027 title=\u0027plane-arrival\u0027 height=\u002732px\u0027 width=\u002732px\u0027 /\u003e\u003c/div\u003e"});
-            marker_4da76bd51eb1567751bfe004b2cc733e.setIcon(div_icon_ecb75844c8fb5b3459654bf21cc4f45d);
+            var div_icon_1be631f3172ddc8de6194f2ca544fd10 = L.divIcon({"className": "empty", "html": "\u003cdiv\u003e\u003cimg style=\"filter: brightness(0) invert(0.3);\" src=\u0027https://gistcdn.githack.com/samrath-sudesh-acharya/d36aedb15a5f492a9a1c4f2701a76421/raw/48a72d62f49b63375944d88d0254a834ac75cf06/plane-arrival.svg\u0027 title=\u0027plane-arrival\u0027 height=\u002732px\u0027 width=\u002732px\u0027 /\u003e\u003c/div\u003e"});
+            marker_e5a90dea2646e888120b428cd71d8490.setIcon(div_icon_1be631f3172ddc8de6194f2ca544fd10);
         
     
-        var popup_abc2e68c0131bf54f857bb829b13625a = L.popup({"maxWidth": "100%"});
+        var popup_8cf17782627c8f66fdf2d1bcb4579ee9 = L.popup({"maxWidth": "100%"});
 
         
-            var html_ad74356a1440a4d059c34f0572b4734e = $(`<div id="html_ad74356a1440a4d059c34f0572b4734e" style="width: 100.0%; height: 100.0%;"><b>Wellington International</b></div>`)[0];
-            popup_abc2e68c0131bf54f857bb829b13625a.setContent(html_ad74356a1440a4d059c34f0572b4734e);
+            
+                var html_3442b9ee1d0549d41c2d7668eea4d2eb = $(`<div id="html_3442b9ee1d0549d41c2d7668eea4d2eb" style="width: 100.0%; height: 100.0%;"><b>ICN</b></div>`)[0];
+                popup_8cf17782627c8f66fdf2d1bcb4579ee9.setContent(html_3442b9ee1d0549d41c2d7668eea4d2eb);
+            
         
 
-        marker_4da76bd51eb1567751bfe004b2cc733e.bindPopup(popup_abc2e68c0131bf54f857bb829b13625a)
+        marker_e5a90dea2646e888120b428cd71d8490.bindPopup(popup_8cf17782627c8f66fdf2d1bcb4579ee9)
         ;
 
         
     
     
-            var poly_line_4299163e71bf62182cd4be4a83fd51dd = L.polyline(
-                [[50.61677000000003, -57.214909999999975], [-41.32881999999995, 174.8123200000001]],
+            var poly_line_d6b5278b4e4373eaa92280d87d3981af = L.polyline(
+                [[32.88985, -97.03983], [37.4492, 126.45095]],
                 {"bubblingMouseEvents": true, "color": "darkgrey", "dashArray": "10", "dashOffset": null, "fill": false, "fillColor": "darkgrey", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-            ).addTo(map_0df0ff02b8d051a08aa198c1020c2b90);
+            ).addTo(map_2666950c839327586c8e210e93e0472f);
         
 </script>
+</html>

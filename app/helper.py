@@ -12,28 +12,14 @@ templates = Jinja2Templates(directory='.')
 #     return db
   
 def get_info(data:list)->list:
-    iata =  data[0]["flight"]["iata"] 
-    URL = f"https://www.radarbox.com/data/flights/{iata}"
   
     HEADERS = ({'User-Agent':
             'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
             (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',\
             'Accept-Language': 'en-US, en;q=0.5'})
-  
-    webpage = requests.get(URL, headers=HEADERS)
-    soup = BeautifulSoup(webpage.content, "html.parser")
-    dom = etree.HTML(str(soup))
-    tail_number = dom.xpath('//div[@id="value"]/a/text()')
-    if(len(tail_number)>=3):
-        tail_number= tail_number[3]
-        # print(tail_number)
-    else:
-        for i in range(len(data)):
-            data[i]["image"] = "null"
-            data[i]["registration number"] = None
-        return data
 
-    URL = f"https://www.jetphotos.com/photo/keyword/{tail_number}"
+    regNum = data["data"][0]["aircraft"]["regNumber"]
+    URL = f"https://www.jetphotos.com/photo/keyword/{regNum}"
 
     webpage = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(webpage.content, "html.parser")
@@ -44,9 +30,7 @@ def get_info(data:list)->list:
     soup = BeautifulSoup(webpage.content, "html.parser")
     img = soup.find_all("img")
     # print(img[2]['srcset'])
-    for i in range(len(data)):
-        data[i]["image"] = img[2]['srcset']
-        data[i]["registration number"] = tail_number
+    data["image"] = img[2]['srcset']
     return data
 
 def get_map(departure:str,arrival:str):
@@ -59,6 +43,6 @@ def get_map(departure:str,arrival:str):
     folium.Marker(
     [lat2, lon2], popup=f"""<b>{arrival}</b>""",icon=folium.DivIcon(html="""<div><img style="filter: brightness(0) invert(0.3);" src='https://gistcdn.githack.com/samrath-sudesh-acharya/d36aedb15a5f492a9a1c4f2701a76421/raw/48a72d62f49b63375944d88d0254a834ac75cf06/plane-arrival.svg' title='plane-arrival' height='32px' width='32px' /></div>""")).add_to(m)
     folium.PolyLine([(lat1,lon1),(lat2,lon2)],color='darkgrey',dash_array='10').add_to(m)
-    m.save('html/map.html')
+    m.save('app/html/map.html')
 
 

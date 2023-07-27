@@ -1,6 +1,6 @@
 import requests
 from fastapi import FastAPI,Request
-import json
+from datetime import datetime
 from bs4 import BeautifulSoup
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -14,42 +14,29 @@ soup = BeautifulSoup()
 
 
 
-@app.get('/data/{flight_iata}')
-def get_img(flight_iata:str):
-    params = {
-                  'access_key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZDM0NjM3M2QyZDYzNDczNWU3MDk1MTJkYTBjNjg2MDU1YTMwYzVkNmY0NTQzMGMyMWExZjZlYWI4OGI1ODg0OTRiNzQ3YTkyZjViYmQ3YTAiLCJpYXQiOjE2NTcxMTI4NjEsIm5iZiI6MTY1NzExMjg2MSwiZXhwIjoxNjg4NjQ4ODYxLCJzdWIiOiI3OTY0Iiwic2NvcGVzIjpbXX0.n5MglGPm75IDzE447m6wCHnN-Od7fCbQE4e3ffY3NKXVCKEbz9hf6NIGaUjXng49Vu77w6vqdWjnvojSx7Ydlg',
-                  'flightIata': f'{flight_iata}'
-    }
+@app.get('/data/{flight_number}')
+def get_img(flight_number:str):
 
-    api_result = requests.get('https://app.goflightlabs.com/flights', params)
+    current_date = datetime.now()
 
-    api_response = api_result.json()
-    print(len(api_response[0]))
-    if(len(api_response)>3):
-        api_response = get_info(api_response)
-    return api_response
+    url1 = f'https://app.goflightlabs.com/flight?access_key=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMDA1YmEwNWEwZjU1ZDY3MzE3MDAwYzlhMTY1ZDBiNTMxNWYyNTdkNWVkZDlmMzJhMjU4MmI5OTA2MmQ0ZjQ3ZTc1Y2E3YWMyZDk4YzQyNDUiLCJpYXQiOjE2OTAxODc4NTEsIm5iZiI6MTY5MDE4Nzg1MSwiZXhwIjoxNzIxODEwMjUxLCJzdWIiOiI3OTY0Iiwic2NvcGVzIjpbXX0.XNsb7vRk48oqiHLH7xCCO7Jd27gNA-YrAmriV4746YEuU51_Ow-jWYX9-eTy_Fma0V8UyEGWSoyGW9eYPwJs7A&flight_number={flight_number}'
+    url2 = f'https://app.goflightlabs.com/flights?access_key=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMDA1YmEwNWEwZjU1ZDY3MzE3MDAwYzlhMTY1ZDBiNTMxNWYyNTdkNWVkZDlmMzJhMjU4MmI5OTA2MmQ0ZjQ3ZTc1Y2E3YWMyZDk4YzQyNDUiLCJpYXQiOjE2OTAxODc4NTEsIm5iZiI6MTY5MDE4Nzg1MSwiZXhwIjoxNzIxODEwMjUxLCJzdWIiOiI3OTY0Iiwic2NvcGVzIjpbXX0.XNsb7vRk48oqiHLH7xCCO7Jd27gNA-YrAmriV4746YEuU51_Ow-jWYX9-eTy_Fma0V8UyEGWSoyGW9eYPwJs7A&flightIata={flight_number}'
+    api_result = requests.get(url2)
+    schedule_result = requests.get(url1).json()
+    result = api_result.json()
 
-
-# def live_location(icoa:str):
-#     URL = f"https://opensky-network.org/api/states/all?icao24={icoa}"
-#     r = requests.get(URL)
-#     pass
-
-
-
-# @app.get('/demo/G8320')
-# def load_info():
-#     raw_data = open('G8320.json')
-#     json_data = json.load(raw_data)
-#     # live_location(json_data[0]['flight']['icao'])
-#     json_data = get_info(json_data)
-#     return json_data
+    for data in schedule_result["data"]:
+    
+        if(data["DATE"] == current_date.strftime("%d %b %Y")):
+            result["data"][0]["schedule"] = data
+    
+    return {"success": result}
 
 
 @app.get('/map/departure={departure}&arrival={arrival}',response_class=HTMLResponse)
 async def maps(departure:str,arrival:str,request:Request):
     get_map(departure,arrival)
-    templates = Jinja2Templates(directory='html')
+    templates = Jinja2Templates(directory='app/html')
     return templates.TemplateResponse("map.html", {"request": request})
 
 # @app.post('/user')
