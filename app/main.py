@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+import random
 # from model import User,Data
 from app.helper import get_info,get_map
 
@@ -19,18 +20,32 @@ def get_img(flight_number:str):
 
     current_date = datetime.now()
 
-    url1 = f'https://app.goflightlabs.com/flight?access_key=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMDA1YmEwNWEwZjU1ZDY3MzE3MDAwYzlhMTY1ZDBiNTMxNWYyNTdkNWVkZDlmMzJhMjU4MmI5OTA2MmQ0ZjQ3ZTc1Y2E3YWMyZDk4YzQyNDUiLCJpYXQiOjE2OTAxODc4NTEsIm5iZiI6MTY5MDE4Nzg1MSwiZXhwIjoxNzIxODEwMjUxLCJzdWIiOiI3OTY0Iiwic2NvcGVzIjpbXX0.XNsb7vRk48oqiHLH7xCCO7Jd27gNA-YrAmriV4746YEuU51_Ow-jWYX9-eTy_Fma0V8UyEGWSoyGW9eYPwJs7A&flight_number={flight_number}'
-    url2 = f'https://app.goflightlabs.com/flights?access_key=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMDA1YmEwNWEwZjU1ZDY3MzE3MDAwYzlhMTY1ZDBiNTMxNWYyNTdkNWVkZDlmMzJhMjU4MmI5OTA2MmQ0ZjQ3ZTc1Y2E3YWMyZDk4YzQyNDUiLCJpYXQiOjE2OTAxODc4NTEsIm5iZiI6MTY5MDE4Nzg1MSwiZXhwIjoxNzIxODEwMjUxLCJzdWIiOiI3OTY0Iiwic2NvcGVzIjpbXX0.XNsb7vRk48oqiHLH7xCCO7Jd27gNA-YrAmriV4746YEuU51_Ow-jWYX9-eTy_Fma0V8UyEGWSoyGW9eYPwJs7A&flightIata={flight_number}'
-    api_result = requests.get(url2)
-    schedule_result = requests.get(url1).json()
-    result = api_result.json()
+    access_key = ['eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMDA1YmEwNWEwZjU1ZDY3MzE3MDAwYzlhMTY1ZDBiNTMxNWYyNTdkNWVkZDlmMzJhMjU4MmI5OTA2MmQ0ZjQ3ZTc1Y2E3YWMyZDk4YzQyNDUiLCJpYXQiOjE2OTAxODc4NTEsIm5iZiI6MTY5MDE4Nzg1MSwiZXhwIjoxNzIxODEwMjUxLCJzdWIiOiI3OTY0Iiwic2NvcGVzIjpbXX0.XNsb7vRk48oqiHLH7xCCO7Jd27gNA-YrAmriV4746YEuU51_Ow-jWYX9-eTy_Fma0V8UyEGWSoyGW9eYPwJs7A','eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMmIyMDIyNjJkZjI0ZGNkNzRkNmVlZjExZmMzYjczM2VkNmMzYWE5NDIyY2ZmOTE2YWIyZWU4OGNlMTAyNzE0NjcxMDA5ODU4NTAzZTViY2EiLCJpYXQiOjE2ODg5MTI4NzMsIm5iZiI6MTY4ODkxMjg3MywiZXhwIjoxNzIwNTM1MjczLCJzdWIiOiIyMTM0NCIsInNjb3BlcyI6W119.L_ud-0RQkmE0tXr5JBrPU5RxYwhHf054lm8EKGwVDBMcC9e12Xs0F8O1w5ohejxNPpTK9CZ5poOJbER0w-U0TQ',]
+    key = access_key[0]
+    test_url = f'https://app.goflightlabs.com/flights?access_key={key}'
+    test_result = requests.get(test_url).json()
 
-    for data in schedule_result["data"]:
+    try:
+        if(test_result["message"]):
+            key = access_key[1]
+    except:
+        pass
+
+    url2 = f'https://app.goflightlabs.com/flights?access_key={key}&flightIata={flight_number}'
+    api_result = requests.get(url2).json()
     
-        if(data["DATE"] == current_date.strftime("%d %b %Y")):
-            result["data"][0]["schedule"] = data
+    if(api_result["success"]):
+        url1 = f'https://app.goflightlabs.com/flight?access_key={key}&flight_number={flight_number}'
+        schedule_result = requests.get(url1).json()
+        print(schedule_result)
+        for data in schedule_result["data"]:
+
+            if(data["DATE"] == current_date.strftime("%d %b %Y")):
+                api_result["data"][0]["schedule"] = data
     
-    return {"success": result}
+        return {"success": api_result}
+    else:
+        return {"success":"false"}
 
 
 @app.get('/map/departure={departure}&arrival={arrival}',response_class=HTMLResponse)
