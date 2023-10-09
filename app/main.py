@@ -28,11 +28,12 @@ def get_img(flight_number:str):
     try:
         if(test_result["message"]):
             key = access_key[1]
+            url2 = f'https://app.goflightlabs.com/flights?access_key={key}&flightIata={flight_number}'
+            api_result = requests.get(url2).json()
+        else:
+            api_result = test_result
     except:
         pass
-
-    url2 = f'https://app.goflightlabs.com/flights?access_key={key}&flightIata={flight_number}'
-    api_result = requests.get(url2).json()
     
     if(api_result["success"]):
         url1 = f'https://app.goflightlabs.com/flight?access_key={key}&flight_number={flight_number}'
@@ -42,6 +43,8 @@ def get_img(flight_number:str):
 
             if(data["DATE"] == current_date.strftime("%d %b %Y")):
                 api_result["data"][0]["schedule"] = data
+
+        api_result["data"] = get_info(api_result["data"])
     
         return {"success": api_result}
     else:
