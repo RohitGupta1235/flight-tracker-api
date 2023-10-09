@@ -24,16 +24,14 @@ def get_img(flight_number:str):
     key = access_key[0]
     test_url = f'https://app.goflightlabs.com/flights?access_key={key}'
     test_result = requests.get(test_url).json()
-
+    api_result = {}
     try:
         if(test_result["message"]):
             key = access_key[1]
             url2 = f'https://app.goflightlabs.com/flights?access_key={key}&flightIata={flight_number}'
             api_result = requests.get(url2).json()
-        else:
-            api_result = test_result
     except:
-        pass
+        api_result = test_result
     
     if(api_result["success"]):
         url1 = f'https://app.goflightlabs.com/flight?access_key={key}&flight_number={flight_number}'

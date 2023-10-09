@@ -18,7 +18,7 @@ def get_info(data:list)->list:
             (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',\
             'Accept-Language': 'en-US, en;q=0.5'})
 
-    regNum = data["data"][0]["aircraft"]["regNumber"]
+    regNum = data[0]["aircraft"]["regNumber"]
     URL = f"https://www.jetphotos.com/photo/keyword/{regNum}"
 
     webpage = requests.get(URL, headers=HEADERS)
@@ -30,7 +30,7 @@ def get_info(data:list)->list:
     soup = BeautifulSoup(webpage.content, "html.parser")
     img = soup.find_all("img")
     # print(img[2]['srcset'])
-    data["image"] = img[2]['srcset']
+    data[0]["image"] = img[2]['srcset']
     return data
 
 def get_map(departure:str,arrival:str):
